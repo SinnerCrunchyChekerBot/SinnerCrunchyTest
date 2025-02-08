@@ -1,5 +1,3 @@
-from module import ModulesAutoBySinner
-ModulesAutoBySinner()
 from json import load
 import re
 from premium import set_premium
