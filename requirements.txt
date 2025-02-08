@@ -1,5 +1,7 @@
 python-telegram-bot==13.7
-faker
-requests
-httpx 
 pymongo
+requests
+httpx
+faker
+certifi
+urllib3==1.26.16
