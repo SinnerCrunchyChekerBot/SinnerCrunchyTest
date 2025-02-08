@@ -1,3 +1,5 @@
+from module import ModulesAutoBySinner
+ModulesAutoBySinner()
 from json import load
 import re
 from premium import set_premium
@@ -471,7 +473,9 @@ def mass_check(update: Update, context: CallbackContext):
     user_name = update.message.from_user.first_name  # Get sender's name
     print(f"User {user_id} triggered mass_check") 
 
-    
+    if update.message.document.file_size > 1 * 1024 * 1024:
+            update.message.reply_text("❌ File size exceeds 1MB limit! Please upload a smaller file.")
+            return
     # ❌ Prevent multiple checks at once
     if is_mass_check_running(user_id, context):
         update.message.reply_text("⚠️ You already have an ongoing mass check. Please wait for it to finish before starting a new one.")
@@ -714,6 +718,7 @@ def main(): #main bot start function + command handling
     SinnerTHEFUQQ = updater.dispatcher
 
 # 🚀 Fastest-response commands first
+    SinnerTHEFUQQ.add_handler(CallbackQueryHandler(stop_check, pattern=r"stop_check_\d+"))
     SinnerTHEFUQQ.add_handler(CommandHandler("start", start))
     SinnerTHEFUQQ.add_handler(CallbackQueryHandler(button))
     SinnerTHEFUQQ.add_handler(CommandHandler("ping", ping))
@@ -757,7 +762,6 @@ def main(): #main bot start function + command handling
     SinnerTHEFUQQ.add_handler(stop_button_handler)
 
     # ✅ Callbacks (Low Priority)
-    SinnerTHEFUQQ.add_handler(CallbackQueryHandler(stop_check, pattern=r"stop_check_\d+"))
 
     # 📂 File Handling (Lowest Priority - Runs Last)
     SinnerTHEFUQQ.add_handler(MessageHandler(Filters.document.mime_type("text/plain"), file_handler))
