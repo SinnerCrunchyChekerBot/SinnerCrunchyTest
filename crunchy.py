@@ -20,7 +20,7 @@ import threading
 from clean import clean, clean_handler
 import random
 from premium import set_premium_handler, unset_premium_handler
-from keygen import genkeys
+from keygen import genkeys, keys
 from redeem import redeem
 from commands import cmds_handler
 from howcredits import how_credits_handler
@@ -80,15 +80,15 @@ def button(update: Update, context: CallbackContext) -> None:
             "⚡ *Supercharge Your Experience!* ⚡\n\n"
             "❤️‍🔥 *Use* `/help`, `/cmds`, `/howcrd` *to explore the magic!*\n\n"
             "[≭] *Developer:* [Sinner](t.me/thefuqq)\n"
-            "[≭] *Powered By:* [Team Ehra](t.me/godtest)\n"
+            "[≭] *Powered By:* [Team Ehra](t.me/bitchinhell)\n"
             # "💫 *THANKS & HAPPY CHECKING!* 💫\n"
             # "━━━━━━━𓆩≭𓆪━━━━━━━"
         )
 
             # Inline keyboard buttons
             keyboard = [
-                [InlineKeyboardButton("𝗦𝗨𝗣𝗣𝗢𝗥𝗧", url="https://t.me/GODTEST")],
-                [InlineKeyboardButton("𝗗𝗘𝗩𝗘𝗟𝗢𝗣𝗘𝗥", url="https://t.me/luciinvain")]
+                [InlineKeyboardButton("𝗦𝗨𝗣𝗣𝗢𝗥𝗧", url="https://t.me/bitchinhell")],
+                [InlineKeyboardButton("𝗗𝗘𝗩𝗘𝗟𝗢𝗣𝗘𝗥", url="https://t.me/thefuqq")]
             ]
 
             # Create the inline keyboard markup
@@ -314,7 +314,7 @@ def single(update: Update, context: CallbackContext):
 ┃[≭] 𝗦𝓲𝓷𝓷𝓮𝓻✘ *Checker*
 ┃⚡ *Dev:* @THEFUQQ
 ┃🤖 *Powered by:* `TEAM EHRA`
-┃🔗 [Join](https://t.me/GODTEST) *for Updates!*
+┃🔗 [Join](https://t.me/bitchinhell) *for Updates!*
 ┗━━━━━━━━━━━⊛
             """)
 
@@ -347,49 +347,59 @@ def single(update: Update, context: CallbackContext):
         update.message.reply_text("❌ *Invalid format.*\n\nUse: `/single email:password`", parse_mode="Markdown")
 
 
-
-# Command: /start
 @require_registration
 def start(update: Update, context: CallbackContext) -> None:
     user_id = update.message.from_user.id
     store_user_id(user_id)  # Store user ID
     
-
     # Check if the user is banned
     if is_user_banned(user_id):
-        update.message.reply_text("𝗬𝗼𝘂 𝗮𝗿𝗲 𝗿𝗲𝘀𝘁𝗿𝗶𝗰𝘁𝗲𝗱 𝗳𝗿𝗼𝗺 𝘂𝘀𝗶𝗻𝗴 𝘁𝗵𝗶𝘀 𝗯𝗼𝘁. 𝗞𝗶𝗻𝗱𝗹𝘆 𝗰𝗼𝗻𝘁𝗮𝗰𝘁 𝘁𝗵𝗲 𝗱𝗲𝘃𝗲𝗹𝗼𝗽𝗲𝗿 𝘁𝗼 𝗿𝗲-𝗴𝗮𝗶𝗻 𝗮𝗰𝗰𝗲𝘀𝘀.")
+        update.message.reply_text("🚫 𝗬𝗼𝘂 𝗮𝗿𝗲 𝗿𝗲𝘀𝘁𝗿𝗶𝗰𝘁𝗲𝗱 𝗳𝗿𝗼𝗺 𝘂𝘀𝗶𝗻𝗴 𝘁𝗵𝗶𝘀 𝗯𝗼𝘁.\n⚠ 𝗖𝗼𝗻𝘁𝗮𝗰𝘁 [𝗗𝗲𝘃𝗲𝗹𝗼𝗽𝗲𝗿](t.me/thefuqq) 𝘁𝗼 𝗿𝗲𝗴𝗮𝗶𝗻 𝗮𝗰𝗰𝗲𝘀𝘀.", parse_mode="Markdown")
         return
 
-    # Check if the user has already joined the required channels
+    # Send an initializing message
+    progress_msg = update.message.reply_text("⚡ 𝗜𝗻𝗶𝘁𝗶𝗮𝗹𝗶𝘇𝗶𝗻𝗴 𝗦𝘆𝘀𝘁𝗲𝗺...")
+
+    time.sleep(1.5)  # Simulate processing time
+    progress_msg.edit_text("🔍 𝗟𝗼𝗮𝗱𝗶𝗻𝗴 𝗖𝗼𝗻𝗳𝗶𝗴𝘀...")
+
+    time.sleep(3)  # Simulate processing time
+    progress_msg.edit_text("✅ 𝗖𝗼𝗻𝗳𝗶𝗴𝘀 𝗟𝗼𝗮𝗱𝗲𝗱! 𝗣𝗿𝗼𝗰𝗲𝗲𝗱𝗶𝗻𝗴...")
+
+    time.sleep(1.5)  # Simulate processing time
+
+    progress_msg.delete()  # Delete the loading message
+
+
+    # Check if the user has joined the required channels
     if check_membership(user_id, context):
-        # User has already joined the channels; show the startup message
-        video_url = 'https://motionbgs.com/media/4639/yor-forger-master-of-disguise.960x540.mp4'  # Replace with your image URL or local path
-        # caption = "𝗪𝗲𝗹𝗰𝗼𝗺𝗲 𝗧𝗼 𝗥𝗲𝘀𝗲𝘁𝗕𝗼𝘁 ❤️‍🔥🕊!\n\n[≭] 𝗨𝘀𝗲 𝘁𝗵𝗲 /help 𝗖𝗼𝗺𝗺𝗮𝗻𝗱 𝘁𝗼 𝗴𝗲𝘁 𝘀𝘁𝗮𝗿𝘁𝗲𝗱. \n[≭] 𝗗𝗲𝘃𝗲𝗹𝗼𝗽𝗲𝗿 : @luciInvain \n[≭] 𝗠𝗮𝗶𝗻 : @GODTEST"  # Caption text
+        # Final welcome message
+        video_url = 'https://motionbgs.com/media/4639/yor-forger-master-of-disguise.960x540.mp4'  # Replace with actual video URL
+        
         caption = (
-            # "━━━━━━━𓆩≭𓆪━━━━━━━\n"
             "* Welcome To* [𝗦𝓲𝓷𝓷𝓮𝓻✘Checker](t.me/sinnercheckerbot) \n\n"
             " *The Ultimate Bot Packed With* *Next-Level & Mind-Blowing* Features! 💋\n\n"
             "⚡ *Supercharge Your Experience!* ⚡\n\n"
             "❤️‍🔥 *Use* `/help`, `/cmds`, `/howcrd` *to explore the magic!*\n\n"
             "[≭] *Developer:* [Sinner](t.me/thefuqq)\n"
-            "[≭] *Powered By:* [Team Ehra](t.me/godtest)\n"
-            # "💫 *THANKS & HAPPY CHECKING!* 💫\n"
-            # "━━━━━━━𓆩≭𓆪━━━━━━━"
+            "[≭] *Powered By:* [Team Ehra](t.me/bitchinhell)\n"
+
         )
 
         # Inline keyboard buttons
         keyboard = [
-            [InlineKeyboardButton(" 𝗦𝗨𝗣𝗣𝗢𝗥𝗧 ", url="https://t.me/GODTEST")],
-            [InlineKeyboardButton(" 𝗗𝗘𝗩𝗘𝗟𝗢𝗣𝗘𝗥 ", url="https://t.me/luciinvain")]
+            [InlineKeyboardButton("𝗦𝗨𝗣𝗣𝗢𝗥𝗧", url="https://t.me/bitchinhell")],
+            [InlineKeyboardButton("𝗗𝗘𝗩𝗘𝗟𝗢𝗣𝗘𝗥", url="https://t.me/thefuqq")]
         ]
 
-        # Create the inline keyboard markup
         reply_markup = InlineKeyboardMarkup(keyboard)
 
-        # Send the image with the caption and inline buttons
+        # Edit the message to the final one
+        # progress_msg.delete()  # Delete the loading message
         update.message.reply_video(
             video=video_url,
-            caption=caption, parse_mode="Markdown",
+            caption=caption,
+            parse_mode="Markdown",
             reply_markup=reply_markup
         )
     else:
@@ -573,7 +583,7 @@ def process_mass_check(update: Update, context: CallbackContext, file_path: str,
 ┃[≭] 𝗦𝓲𝓷𝓷𝓮𝓻✘ *Checker*
 ┃⚡ *Dev:* @THEFUQQ
 ┃🤖 *Powered by:* `TEAM EHRA`
-┃🔗 [Join](https://t.me/GODTEST) *for Updates!*
+┃🔗 [Join](https://t.me/bitchinhell) *for Updates!*
 ┗━━━━━━━━━━━⊛
             """)
 
@@ -735,6 +745,7 @@ def main(): #main bot start function + command handling
     # SinnerTHEFUQQ.add_handler(CommandHandler("credits", credits_handler))
     SinnerTHEFUQQ.add_handler(credits_handler)  
     SinnerTHEFUQQ.add_handler(CommandHandler("genkeys", genkeys))
+    SinnerTHEFUQQ.add_handler(CommandHandler("keys", keys))
     SinnerTHEFUQQ.add_handler(CommandHandler("redeem", redeem))
 
     # 🛑 Admin Commands (Medium Priority)
@@ -768,7 +779,8 @@ def main(): #main bot start function + command handling
 
 
     # updater.start_polling()
-    updater.start_polling(drop_pending_updates=True, poll_interval=0.1)
+    # updater.start_polling(drop_pending_updates=True, poll_interval=0.1)
+    updater.start_polling()
     updater.idle()
 
 if __name__ == "__main__":
