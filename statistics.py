@@ -8,16 +8,9 @@ from ban import is_user_banned
 
 # Track bot start time
 BOT_START_TIME = time.time()
-BOT_VERSION = "v1.69"
+BOT_VERSION = "v2.69"
 
-command_usage = {
-    "ping": 0,
-    "statistics": 0,
-    "mass": 0,
-    "single": 0,
-    "help": 0,
-    # Add more commands as needed
-}
+
 
 def calculate_uptime():
     """
@@ -60,16 +53,6 @@ def statistics(update: Update, context: CallbackContext):
     # Calculate bot uptime
     uptime = calculate_uptime()
 
-    # Total commands used
-    total_commands_used = sum(command_usage.values())
-
-    # Most used command
-    most_used_command = max(command_usage, key=command_usage.get)
-
-    # Top 5 commands usage breakdown
-    usage_breakdown = "\n".join(
-        [f"🔹 `{cmd}`: *{count}* times" for cmd, count in sorted(command_usage.items(), key=lambda x: x[1], reverse=True)[:5]]
-    )
 
     # Response message with improved UI
     response_message = (
@@ -84,12 +67,6 @@ def statistics(update: Update, context: CallbackContext):
     f"👑 *Premium Users:* `{premium_users}`\n"
     f"🚫 *Banned Users:* `{banned_users}`\n"
     f"📊 *Active Users Today:* `{active_users_today}`\n"
-    "━━━━━━━━━━━━━━━━━━━━━\n"
-    
-    "📊 *Command Usage Stats:*\n"
-    f"🏆 *Most Used Command:* `{most_used_command}`\n"
-    f"🧩 *Total Commands Used:* `{total_commands_used}`\n"
-    f"{usage_breakdown}\n"
     "━━━━━━━━━━━━━━━━━━━━━\n"
     
     "🤖 *Powered by:* [TEAM EHRA](https://t.me/GODTEST)\n"
