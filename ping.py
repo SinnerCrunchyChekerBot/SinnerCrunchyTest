@@ -2,7 +2,7 @@ import time
 from datetime import timedelta
 from telegram import Update, Message
 from telegram.ext import CallbackContext
-from statistics import command_usage, calculate_uptime  # Import these from statistics.py
+from statistics calculate_uptime 
 from others import require_registration, store_user_id
 from ban import is_user_banned
 
