@@ -5,7 +5,7 @@ USER_IDS_FILE = "user_ids.txt"
 ADMIN_USER_IDS = [7195189529, 7250233115, 6660736046, 5005958304]
 
 REQUIRED_CHANNELS = [
-  {'name': 'GODTEST', 'link': 'https://t.me/GODTEST'},
+  {'name': 'bitchinhell', 'link': 'https://t.me/bitchinhell'},
   {'name': 'deathchatting_world', 'link': 'https://t.me/deathchatting_world'}
 ]
 
