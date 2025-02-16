@@ -42,7 +42,7 @@ def ping(update: Update, context: CallbackContext):
     f"⚡ *Latency:* `{latency} ms`\n"
     "🔹 *Response Speed:* Ultra Fast 🚀\n"
     "━━━━━━━━━━━━━━━━━━━━━\n"
-    "🤖 *Powered by:* [TEAM EHRA](https://t.me/GODTEST)\n"
+    "🤖 *Powered by:* [TEAM EHRA](https://t.me/bitchinhell)\n"
     "🔗 *Join for Updates and More!*"
 )
 
