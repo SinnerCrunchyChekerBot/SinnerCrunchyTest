@@ -70,3 +70,22 @@ def genkeys(update: Update, context: CallbackContext):
         parse_mode="Markdown"
     )
 
+# /keys (Admin-Only)
+@require_registration
+def keys(update: Update, context: CallbackContext):
+    user_id = update.message.from_user.id
+
+    # Check if the user is an admin
+    if user_id not in ADMIN_USER_IDS:
+        update.message.reply_text("🚫 *Access Denied!* You are *not authorized* to use this command.", parse_mode="Markdown")
+        return
+
+    # Display available key types
+    key_list = "\n".join(
+        [f"🔑 *{KEY_TYPES[key]['name']}* - `{key}`" for key in KEY_TYPES]
+    )
+    
+    update.message.reply_text(
+        f"📋 *Available Trial Key Types:* \n\n{key_list}",
+        parse_mode="Markdown"
+    )
